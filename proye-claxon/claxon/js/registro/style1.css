@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-image: url('auto.png'); background-size: 100vw 100vh;
+    background-attachment: fixed;
+    margin:0;
+  }
+  
+  .form-register {
+    width: 400px;
+    background: linear-gradient(90deg, rgba(10,6,78,1) 10%, rgba(4,4,36,1)40%);
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+    text-align: center;
+  }
+  
+  .form-register h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    width: 100%;
+    background: rgba(4,4,36,1);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid  white;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+  }
+  
+  .form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+  }
+  
+  .form-register a {
+    color: rgb(50, 130, 184) ;
+    text-decoration: none;
+  }
+  
+  .form-register a:hover {
+    color: rgb(50, 130, 184);
+    text-decoration: underline;
+  }
+  
+  .form-register .botons {
+    width: 100%;
+    background: rgb(50, 130, 184);
+    border: none;
+    padding: 12px;
+    color: #24303c;
+    margin: 16px 0;
+    font-size: 16px;
+  }
+  @media (max-width:480px){
+    form{
+        width: 100%;
+    }
+}
