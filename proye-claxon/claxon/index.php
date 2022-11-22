@@ -54,7 +54,7 @@
 			<?php
         include("conexion.php");
 
-        $query = "SELECT  id,imagen,nombre FROM partes  WHERE destacados=1 && activo=1";
+        $query = "SELECT  id,imagen,nombre, stock FROM partes  WHERE destacados=1 && activo=1";
         $resultado = $conexion->query($query);
         while ($row = $resultado->fetch_assoc()) {
             ?>

@@ -30,13 +30,14 @@
 </head>
 <body>
     <header class="head"> 
-    <div align="center"><img src="claxon3.png"    width="250px"
-     height="200px"></div>
+    <div align="center"><h1 class="titulo">PRODUCTOS</h1></div>
     
     <nav class="barranav">
+    
 			<div class="contenedorbtnnav">
-				<a href="index.php">INICIO</a>
-				<?php
+      <a href="index.php"><img src="claxon3.png"    width="250px"
+     height="60px"></a>				
+      <?php
 					if ( isset( $_SESSION['user_id'] ))
 						if ($tipo == 'Administrador'){
           echo "<a href='editcata.php'>EDITAR CATALOGO</a>";
@@ -62,7 +63,7 @@
   				</div>
 		</div>
 
-			<?php
+    <?php
         include("conexion.php");
         $query = "SELECT imagen, nombre, stock, id FROM partes WHERE activo = 1";
         $resultado = $conexion->query($query);
@@ -72,24 +73,11 @@
             <form class="articulo" method="post">
                 <img src="data:image/jpg;base64, <?php echo base64_encode($row['imagen']); ?>">
                 <h4 class="card-title"><?php echo $row['nombre']; ?></h4>
-                <style>
-                  h6 {
-                  color: white;
-                }
-                </style>
-                <?php                   
-                  if($tipo === 'Administrador') {
-                    ?>
-                <h6>STOCK: <input class="button-stock" type="text" name="stock" readonly="readonly" value= "<?php echo $row['stock'] ?>"/></h6>
-                <input class="button-stock" hidden readonly="readonly" type="text" name="id" value="<?php echo $row['id'] ?>">                    
-                <?php 
-                  }  
-                  ?>               
+                </a>              
             </form>
-                </a>          
-          <?php include("stock.php");
+                        
+          <?php 
          }
-         
         ?>
 		</div>    
       </main>

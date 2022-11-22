@@ -48,10 +48,10 @@
 
     <form class="form-register" action="signup.php" method="POST">
       <h4>Registro</h4>
-      <input class="controls" name="email" type="text" placeholder="Enter your email">
-      <input class="controls" name="password" type="password" placeholder="Enter your Password">
-      <input class="controls" name="confirm_password" type="password" placeholder="Confirm Password">
-      <button class="btnn" type="submit" value="Submit">Registrarse</button>
+      <input class="controls" name="email" type="mail" placeholder="Ingrese su correo"  pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+      <input class="controls" name="password" type="password" placeholder="Ingrese su contraseña" minlength=8 maxlength=15 required>
+      <input class="controls" name="confirm_password" type="password" placeholder="Confirmar contraseña" minlength=8 maxlength=15 required>
+      <button class="btnn" type="submit" value="Submit" required>Registrarse</button>
       <p><a href="login.php">Ya tengo cuenta</a></p>
 
       <?php if(!empty($message)): ?>

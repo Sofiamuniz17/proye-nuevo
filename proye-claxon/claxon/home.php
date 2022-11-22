@@ -55,8 +55,8 @@
 		<div class="full-box dashboard-sideBar-ct">
 			<!--SideBar Title -->
 		
-			<div align="center"><img src="claxon3.png" width="250px"
-     height="200px">></div>
+			<a href="index.php"><img src="claxon2.png" width="250px" height="200px"></a>
+
 			
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
@@ -128,7 +128,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles">Sistema <small>Mosaico</small></h1>
+			  <h1 class="text-titles">Sistema</h1>
 			</div>
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">

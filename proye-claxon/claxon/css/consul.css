@@ -1,11 +1,15 @@
 body{
 	font-family: arial, helvetica;
     width: 100%;
-    background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,55,1) 33%, rgba(11,4,56,1) 100%);
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
+    background:
+linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+background-color: #131313;
+background-size: 20px 20px;
 }
 
 .menu{
@@ -160,15 +164,22 @@ body{
 }
 .post {
     width: 400px;
-    background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,55,1) 33%, rgba(11,4,56,1) 100%);
+	background:
+	linear-gradient(27deg, #101010 5px, transparent 5px) 0 5px,
+	linear-gradient(207deg, #101010 5px, transparent 5px) 10px 0px,
+	linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+	linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+	linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+	linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+	background-color: #131313;
+	background-size: 20px 20px;
     padding: 30px;
     margin: auto;
     margin-top:0px;
     border-radius: 25px;
     font-family: 'calibri';
     color: white;
-    box-shadow: 7px 13px 37px #000;
+    box-shadow: 7px 13px 37px rgb(145, 142, 3);
     text-align: center;
   }
   
@@ -179,7 +190,7 @@ body{
   
   .controls {
     width: 100%;
-    background: rgb(19, 19, 81);
+    background: rgb(42, 42, 44);;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
@@ -223,11 +234,19 @@ body{
 	position: sticky;
 	height: 100%;
 	width: 100%;
-	background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,55,1) 33%, rgba(11,4,56,1) 100%);
+	background:
+	linear-gradient(27deg, #101010 5px, transparent 5px) 0 5px,
+	linear-gradient(207deg, #101010 5px, transparent 5px) 10px 0px,
+	linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+	linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+	linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+	linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+	background-color: #131313;
+	background-size: 20px 20px;
 }
 
 .contenedorbtnnav {
+	
 	max-width: 1000px;
 	width: 90%;
 	margin: auto;
@@ -247,7 +266,7 @@ body{
 }
 
 .contenedorbtnnav a:hover {
-	background: rgba(1, 1, 117, 1);
+	background: rgb(42, 42, 44);
 	color: yellow;
 	text-decoration: none;
 	border-radius: 15px;

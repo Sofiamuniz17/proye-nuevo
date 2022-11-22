@@ -25,24 +25,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/stylecat.css">
+    <link rel="stylesheet" type="text/css" href="css/styleedit.css">
     <title>Catalogo</title>
 </head>
 <body>
     <header class="head">
-    <div align="center"><img src="claxon3.png"    width="250px"
-     height="200px"></div>
+    <div align="center"><h1 class="titulo">PRODUCTOS</h1></div>
     
     <nav class="barranav">
 			<div class="contenedorbtnnav">
-				<a href="index.php">INICIO</a>
-				<?php
-					if ( isset( $_SESSION['user_id'] ))
-						if ($tipo == 'Administrador'){
-                    echo "<a href='editcata.php'>EDITAR CATALOGO</a>";
-					echo "<a href='home.php'>ADMINISTRADOR</a>";
-					}	
-				?>
+      <a href="index.php"><img src="claxon2.png" width="300px" height="80px"></a>
+     <a href="home.php">ADMINISTRADOR</a>
 			</div>
 		</nav>
         </header>
@@ -72,6 +65,7 @@
             <form class="articulo" method="post">
                 <img src="data:image/jpg;base64, <?php echo base64_encode($row['imagen']); ?>">
                 <h4 class="card-title"><?php echo $row['nombre']; ?></h4>
+                </a>  
                 <style>
                   h6 {
                   color: white;
@@ -83,13 +77,13 @@
                 <h6>STOCK: <input class="button-stock" type="text" name="stock" readonly="readonly" value= "<?php echo $row['stock'] ?>"/></h6>
                 <input class="button-stock" hidden readonly="readonly" type="text" name="id" value="<?php echo $row['id'] ?>">                    
                   
-                      <input class="button-stock" type="submit" name="agregarStock" value="+">
+                      <input class="button-stock" type="submit" name="agregarStock" value="+1">
                       <input class="button-stock" type="submit" name="removeStock" value="-">  
                     <?php 
                   }  
                   ?>               
             </form>
-                </a>          
+                        
           <?php include("stock.php");
          }
          
