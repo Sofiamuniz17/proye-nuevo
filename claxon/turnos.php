@@ -34,6 +34,8 @@
 </head>
 <body>
     <header>
+    <img src="claxon2.png"    width="250px"
+     height="200px"></a>
 		<nav class="barranav">
 			<div class="contenedorbtnnav">
 				<a href="index.php">INICIO</a>

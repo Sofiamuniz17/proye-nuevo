@@ -116,6 +116,7 @@ color: white;
   grid-gap: 20px;
 }
 .contenido .cata {
+  margin-top: 6%;
   background: rgba(255, 255, 255, 0.096);
   width: auto;
   height: auto;
@@ -127,7 +128,6 @@ color: white;
   left: 10%;
   height: 100%;
   width: 1200px;
-  background: rgba(255, 255, 255, 0.096);
   border-radius: 20px;
 }
 
@@ -145,17 +145,17 @@ color: white;
   color: #fff958;
 }
 .contenedorbtnnav a {
-  color: #fff;
+  color: rgb(0, 0, 0);
   display: inline-block;
   padding: 3vh;
   width: 100%;
   text-align: center;
-  color: #fff;
+  color: rgb(0, 0, 0);
   transition: 0.3s ease-out all;
 }
 
 .contenedorbtnnav a:hover {
-  color: yellow;
+  color: rgba(255, 255, 0, 0.788);
   text-decoration: none;
   border-radius: 15px;
 }
@@ -165,11 +165,11 @@ color: white;
   height: 25px;
   display: flex;
   position: relative;
-  background-color: #fff958;
+  background-color: #fff958ce;
   border-radius: 15px;
   text-align: center;
   text-decoration: none;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 600;
 }
 .categorias-content {
@@ -178,7 +178,7 @@ color: white;
   width: 100%;
   overflow: auto;
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
-  background-color: #fff958;
+  background-color: #fff958d5;
 }
 .categorias:hover .categorias-content {
   display: block;
@@ -186,11 +186,11 @@ color: white;
 }
 .categorias-content a {
   display: block;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 5px;
   text-decoration: none;
 }
 .categorias-content a:hover {
-  color: yellow;
-  background-color: #06617c;
+  color: rgb(255, 255, 255);
+  background-color: #00013a;
 }

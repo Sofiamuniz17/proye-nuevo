@@ -30,13 +30,13 @@
 </head>
 <body>
     <header class="head"> 
-    <div align="center"><h1 class="titulo">PRODUCTOS</h1></div>
+  
     
     <nav class="barranav">
     
 			<div class="contenedorbtnnav">
-      <a href="index.php"><img src="claxon3.png"    width="250px"
-     height="60px"></a>				
+      <a href="index.php"><img src="claxon2.png"    width="250px"
+     height="200px"></a>				
       <?php
 					if ( isset( $_SESSION['user_id'] ))
 						if ($tipo == 'Administrador'){

@@ -45,6 +45,8 @@
 
     <!--<h1>SignUp</h1>
     <span>or <a href="login.php">Login</a></span> -->
+    <img src="claxon2.png"    width="250px"
+     height="200px"></a>
 
     <form class="form-register" action="signup.php" method="POST">
       <h4>Registro</h4>
