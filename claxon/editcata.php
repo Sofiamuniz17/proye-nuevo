@@ -29,12 +29,13 @@
     <title>Catalogo</title>
 </head>
 <body>
+<a href="index.php"><img src="claxon2.png"    width="250px"
+     height="200px" margin-top:15% ></a>	
     <header class="head">
-    <div align="center"><h1 class="titulo">PRODUCTOS</h1></div>
+  
     
     <nav class="barranav">
 			<div class="contenedorbtnnav">
-      <a href="index.php"><img src="claxon2.png" width="300px" height="80px"></a>
      <a href="home.php">ADMINISTRADOR</a>
 			</div>
 		</nav>

@@ -42,14 +42,11 @@
 	<section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
 		<div class="full-box dashboard-sideBar-ct">
-			<!--SideBar Title -->
-			<div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
-				CLAXON <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
-			</div>
+			
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-					<img src="assets/img/avatar.jpg" alt="UserIcon">
+				<img src="claxon2.png" alt="UserIcon">
 					<figcaption class="text-center text-titles"><?= $user['email']; ?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">

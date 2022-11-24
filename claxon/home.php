@@ -109,10 +109,10 @@
 						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
-						<li>
+						
+					<li>
 							<a href="clientes.php"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Cliente</a>
 						</li>
-						
 					</ul>
 				</li>
 				<li>

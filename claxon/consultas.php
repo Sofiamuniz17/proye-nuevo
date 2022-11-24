@@ -49,6 +49,8 @@
 					else 
 					echo "<a href='login.php'>TURNOS</a>";
 					?>
+					
+			
 				<?php
 					if ( isset( $_SESSION['user_id'] )) {
 					echo "<a href='logout.php'>CERRAR SESION</a>";
@@ -56,7 +58,7 @@
 					else 
 					echo "<a href='login.php'>INICIAR SESION</a>";
 					?>
-			</div>
+				</div>	
 		</nav>
 	</header>
       <form class="post" method="post">
