@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2022 a las 01:37:22
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 24-11-2022 a las 21:55:54
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,13 @@ CREATE TABLE `consultas` (
   `Consulta` text NOT NULL,
   `Fecha_Solicitud` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `consultas`
+--
+
+INSERT INTO `consultas` (`Nombre`, `Telefono`, `id`, `Correo`, `Consulta`, `Fecha_Solicitud`) VALUES
+('sofia muniz', '1136353432', 1, 0, 'queria saber si se podria realizar una colocacion de audio y polarizado el mismo dia', '24/11/22');
 
 -- --------------------------------------------------------
 
@@ -83,9 +90,17 @@ CREATE TABLE `pedidos` (
   `nombre` varchar(200) NOT NULL,
   `telefono` varchar(15) NOT NULL,
   `correo` varchar(200) NOT NULL,
-  `pedido` int(11) NOT NULL,
-  `cantidad` int(255) NOT NULL
+  `cantidad` int(255) NOT NULL,
+  `pedido` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `nombre`, `telefono`, `correo`, `cantidad`, `pedido`) VALUES
+(1, 'sofia muniz', '11363534', 'sofimuniz863@gmail.com', 2, ''),
+(2, 'sofia muniz', '11363534', 'sofimuniz863@gmail.com', 2, 'boofer 20` pionner');
 
 -- --------------------------------------------------------
 
@@ -109,7 +124,8 @@ CREATE TABLE `turnos` (
 --
 
 INSERT INTO `turnos` (`Nombre`, `Telefono`, `id`, `Correo`, `Fecha_Hora`, `Marca_Modelo`, `Servicio`, `Fecha_Solicitud`) VALUES
-('Marilina', 1164803246, 1, 'marilinasimeone@yahoo.com.ar', '2022-11-24 23:50:00', 'Honda Fit', 'Alarma', '20/11/22');
+('Marilina', 1164803246, 1, 'marilinasimeone@yahoo.com.ar', '2022-11-24 23:50:00', 'Honda Fit', 'Alarma', '20/11/22'),
+('sofia muniz', 1136353432, 2, 'sofimuniz863@gmail.com', '2022-11-30 18:30:00', 'honda civic', 'polarizado', '24/11/22');
 
 -- --------------------------------------------------------
 
@@ -131,7 +147,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `Tipo`) VALUES
 (1, 'pablojaneiro2903@gmail.com', '$2y$10$C6t.A3785Uce5iKe3qiilOkmNakrgiOzdzMeRW2k0.gjVDwU7m0Ci', 'Administrador'),
 (2, 'marilinasimeone@yahoo.com.ar', '$2y$10$Oa8pFHOZthFkBlQ4gkyJB.iSDJRuUBU4Nb3Vc0eUUNPyXTZ4k1R1C', 'Cliente'),
-(3, 'dantejaneiro05@gmail.com', '$2y$10$za5PbDtd1Wn9BDGmMPZvnuqSFsuhyZTlZoMX6wz4tefnHMYQCY4fi', 'Administrador');
+(3, 'dantejaneiro05@gmail.com', '$2y$10$za5PbDtd1Wn9BDGmMPZvnuqSFsuhyZTlZoMX6wz4tefnHMYQCY4fi', 'Administrador'),
+(4, 'sofimuniz1704@gmail.com', '$2y$10$dkNAWceB3LILcWwinm1Em.GDUnq.2aDKFskGNGFYGzC2Y751jj00e', 'Administrador'),
+(5, 'sofimuniz863@gmail.com', '$2y$10$5J3eLAXxNrjrul8h4cEzx.8PqKSQ2SF2S2AeU29.x12tp/Og6iKfe', 'Cliente');
 
 --
 -- Índices para tablas volcadas
@@ -175,7 +193,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `partes`
@@ -187,19 +205,19 @@ ALTER TABLE `partes`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `turnos`
 --
 ALTER TABLE `turnos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
