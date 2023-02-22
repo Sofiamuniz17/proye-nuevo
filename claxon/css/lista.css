@@ -34,8 +34,6 @@
     font-style: normal;
 }
 /*============ Estilos generales*/
-
-
 body, html{
 	background-color: rgb(194, 194, 194);
 	width: 100%;
@@ -538,7 +536,13 @@ body, html{
     text-align: right;
   }
 }
-
+.btnn{
+	background-color: yellow;
+	color:black;
+	width: 150px;
+	height: 40px;
+	border-radius: 15px;
+}
 /*======= MEDIA QUERIES*/
 @media (max-width: 767px){
 	.dashboard-sideBar{
@@ -614,4 +618,25 @@ body, html{
 	.no-paddin-left{
 		padding-left: 0;
 	}
+}
+.tabla{
+    border-width: 20px;
+    width: 100%;
+    height:auto;
+    background-color: #333;
+    color:white;   
+    border: #01579B;
+}
+.tabla .fila{
+    border-top: #000;
+    border-bottom: #000;
+    height: 100px;
+    width: 25%;
+}
+.tabla a{
+    color: white;
+}
+.tabla img{
+    width: 75%;
+    height: 100%;
 }

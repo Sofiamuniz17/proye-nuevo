@@ -36,6 +36,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="./css/main.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<!-- SideBar -->
@@ -75,6 +76,9 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
+                		<a href="lista_productos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver productos</a>					
+						</li>
+						<li>
 						<a href="editcata.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Editar Catalogo</a>
 						</li>
 						<li>
@@ -89,18 +93,7 @@
 					
 					</ul>
 				</li>
-				<li>
-					<a class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-						<li>
-							<a href="clientes.php"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Cliente</a>
-						</li>
-						
-					</ul>
-				</li>
-				<li>
+
 				
 			</ul>
 		</div>
@@ -118,71 +111,63 @@
 		</div>
 		<?php
 	include("conexion.php");
-  $query = "SELECT nombre, telefono, correo, fecha_hora, marca_modelo, servicio, fecha_solicitud FROM turnos";
+  $query = "SELECT id, nombre, telefono, correo, fecha_hora, marca_modelo, servicio, fecha_solicitud FROM turnos";
         $resultado = $conexion->query($query);
-        while ($row = $resultado -> fetch_assoc()) {  
             ?>
-            <form class="articulo" class="post" method="post">
-				    <br><br/>
+<form class="articulo" class="post" method="post">
+	<br><br/>
 
-				<style>
-				  .labelRow {
-            color: black;
-				    display: block;
-          }
-				  input {
-					  width: 50%;	
-				  }
-				  .row {
-					  margin-left: 2rem;
-					  margin-top: 0.5rem;
-				}
-        </style>
+<style>
+	table {
+  		font-family: arial, sans-serif;
+  		border-collapse: collapse;
+  		width: 100%;
+		}
+
+	td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+	tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+</style>
 
 
-				<div class="row">
-					<label for="nombres" class="labelRow"><b>Nombre y Apellido</b></label>
-					<input class="controls" readonly="readonly" type="text" name="nombres" id="nombres" placeholder="Nombre y Apellido" value= "<?php echo $row['nombre'] ?>">
-				</div>
-				
-				<div class="row">
-					<label for="Telefono" class="labelRow"><b>Telefono</b></label>
-        	<input class="controls" readonly="readonly" type="phone" name="Telefono" id="Telefono" placeholder="Telefono" value= "<?php echo $row['telefono'] ?>">
-				</div>
 
-				<div class="row">
-					<label for="correo" class="labelRow"><b>Correo</b></label>
-          <input class="controls" readonly="readonly" type="email" name="correo" id="correo" placeholder="Correo" value= "<?php echo $row['correo'] ?>">
-				</div>
-
-				<div class="row">
-          <label for="fecha" class="labelRow"><b>Fecha</b></label>
-		      <input class="controls" readonly="readonly" type="datetime-local" name="fecha" id="fecha" value= "<?php echo $row['fecha_hora'] ?>">
-				</div>
-
-				<div class="row">
-          <label for="datosauto" class="labelRow"><b>Marca y Modelo</b></label>
-		      <input class="controls" readonly="readonly" type="text" name="datosauto" id="datosauto" placeholder="Marca y Modelo" value= "<?php echo $row['marca_modelo'] ?>">
-		    </div>
-
-        <div class="row">
-           <label for="text" class="labelRow"><b>Servicio</b></label>
-		       <input class="controls" readonly="readonly" type="text" name="servicio" id="servicio" placeholder="Servicio" value= "<?php echo $row['servicio'] ?>">
-		    </div>
-
-         <div class="row">
-          <label for="fechasolicitud" class="labelRow"><b>Fecha Solicitud</b></label>
-          <input class="controls" readonly="readonly" type="datetime" name="fechasolicitud" id="fechasolicitud" placeholder="Fecha Solicitud" value= "<?php echo $row['fecha_solicitud'] ?>">
-        </div>
-
-				<!-- <input class="consul" type="submit" name="solicite" value="Eliminar consulta">     -->
-            </form>
-            <?php            
-         }
-         ?>
-    <?php
-      include("consul.php");
-      ?>
+<table>
+  <tr>
+    <th>Nombre y Apellido</th>
+    <th>Telefono</th>
+    <th>Correo</th>
+	<th>Fecha</th>
+	<th>Marca y Modelo</th>
+	<th>Servicio</th>
+	<th>Fecha Solicitud</th>
+	<th></th>
+  </tr>
+  
+  <?php 
+     while ($row = $resultado -> fetch_assoc()) {  
+  ?>
+  <tr>
+    <td><?php echo $row['nombre'] ?></td>
+    <td><?php echo $row['telefono'] ?></td>
+    <td><?php echo $row['correo'] ?></td>
+	<td><?php echo $row['fecha_hora'] ?></td>
+    <td><?php echo $row['marca_modelo'] ?></td>
+    <td><?php echo $row['servicio'] ?></td>
+	<td><?php echo $row['fecha_solicitud'] ?></td>
+	<td style="display:flex; justify-content:center" ><a href="actualizarTurnos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Modificar</a>
+  </tr>
+	<input hidden readonly="readonly" type="text" name="id" value="<?php echo $row['id'] ?>" />
+  <?php 
+}
+?>
+</table>
+</form>
 	</section>
 
 	<!-- Notifications area -->

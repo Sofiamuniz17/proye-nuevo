@@ -84,9 +84,7 @@ a {
 	float: left;
 }
 .articulo:hover{
-
-    box-shadow: 15px 15px 15px #fff958;
-
+	transform: scale(1.2);
 }
 
 

@@ -42,7 +42,7 @@
 	<section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
 		<div class="full-box dashboard-sideBar-ct">
-			
+		
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
@@ -75,6 +75,9 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
+                		<a href="lista_productos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver productos</a>					
+						</li>
+						<li>
 						<a href="editcata.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Editar Catalogo</a>
 						</li>
 						<li>
@@ -89,18 +92,7 @@
 					
 					</ul>
 				</li>
-				<li>
-					<a class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-						<li>
-							<a href="clientes.php"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Cliente</a>
-						</li>
-						
-					</ul>
-				</li>
-				<li>
+
 				
 			</ul>
 		</div>
@@ -118,56 +110,58 @@
 		</div>
 		<?php
 	include("conexion.php");
-	$query = "SELECT nombre, telefono, correo, pedido, cantidad FROM pedidos";
+	$query = "SELECT id, nombre, telefono, correo, pedido, cantidad FROM pedidos";
         $resultado = $conexion->query($query);
-        while ($row = $resultado -> fetch_assoc()) {  
             ?>
             <form class="articulo" class="post" method="post">
 				<br><br/>
 				<style>
-				.labelRow {
-                  color: black;
-				  display: block;
-                }
-				input {
-					width: 50%;	
-				}
-				.row {
-					margin-left: 2rem;
-					margin-top: 0.5rem;
-				}
-                </style>
+		table {
+  		font-family: arial, sans-serif;
+  		border-collapse: collapse;
+  		width: 100%;
+		}
 
-				<div class="row">
-					<label for="nombres" class="labelRow"><b>Nombre y Apellido</b></label>
-					<input class="controls" type="text" name="nombres" id="nombres" placeholder="Nombre y Apellido" value= "<?php echo $row['nombre'] ?>">
-				</div>
+	td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+	tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
 				
-				<div class="row">
-					<label for="Telefono" class="labelRow"><b>Telefono</b></label>
-        			<input class="controls" type="phone" name="telefono" id="telefono" placeholder="Telefono" value= "<?php echo $row['telefono'] ?>">
-				</div>
+ </style>
 
-				<div class="row">
-					<label for="correo" class="labelRow"><b>Correo</b></label>
-        			<input class="controls" type="email" name="correo" id="correo" placeholder="Correo" value= "<?php echo $row['correo'] ?>">
-				</div>
-
-				<div class="row">
-					<label for="consulta" class="labelRow"><b>Pedido</b></label>
-        			<input class="controls" type="text" name="pedido" id="pedido" placeholder="Pedido" value= "<?php echo $row['pedido'] ?>">
-				</div>
-
-				<div class="row">
-					<label for="fecha_solicitud" class="labelRow"><b>Cantidad</b></label>
-					<input class="controls" type="datetime" name="cantidad" id="cantidad" placeholder="Cantidad" value= "<?php echo $row['cantidad'] ?>">
-		        </div>
-
+<table>
+  <tr>
+    <th>Nombre y Apellido</th>
+    <th>Telefono</th>
+    <th>Correo</th>
+	<th>Pedido</th>
+	<th>Cantidad</th>
+	<th></th>
+  </tr>
+  
+  <?php 
+     while ($row = $resultado -> fetch_assoc()) {  
+  ?>
+  <tr>
+    <td><?php echo $row['nombre'] ?></td>
+    <td><?php echo $row['telefono'] ?></td>
+    <td><?php echo $row['correo'] ?></td>
+	<td><?php echo $row['pedido'] ?></td>
+	<td><?php echo $row['cantidad'] ?></td>
+	<td style="display:flex; justify-content:center" ><a href="actualizarPedidos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Modificar</a>
+  </tr>
+  <?php 
+}
+?>
+	</table>
 				<!-- <input class="consul" type="submit" name="solicite" value="Eliminar consulta">     -->
             </form>
-            <?php            
-         }
-         ?>
+       
     <?php
       include("consul.php");
       ?>

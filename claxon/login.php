@@ -61,8 +61,7 @@
       <input class="controls" name="email" type="text" placeholder="Ingrese su correo">
       <input class="controls" name="password" type="password" placeholder="Ingrese su contraseña">
       <button class="btnn" type="submit" value="Submit">Ingresar</button>
-      <p><a href="signup.php">No tengo cuenta</a></p>
-      
+      <p><a href="signup.php">No tengo cuenta</a></p>      
     </form>
   </body>
 

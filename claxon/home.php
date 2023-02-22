@@ -90,6 +90,9 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
+                		<a href="lista_productos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver productos</a>					
+						</li>
+						<li>
 						<a href="editcata.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Editar Catalogo</a>
 						</li>
 						<li>
@@ -104,18 +107,7 @@
 					
 					</ul>
 				</li>
-				<li>
-					<a class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-						
-					<li>
-							<a href="clientes.php"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Cliente</a>
-						</li>
-					</ul>
-				</li>
-				<li>
+				
 				
 			</ul>
 		</div>
@@ -132,6 +124,7 @@
 			</div>
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">
+		
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Productos

@@ -25,12 +25,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/styleedit.css">
+    <link rel="stylesheet" type="text/css" href="css/styleediter.css">
     <title>Catalogo</title>
 </head>
 <body>
-<a href="index.php"><img src="claxon2.png"    width="250px"
-     height="200px" margin-top:15% ></a>	
+<a href="index.php"><img src="claxon2.png" width="250px" height="200px" margin-top:15% ></a>	
     <header class="head">
   
     
@@ -71,6 +70,9 @@
                   h6 {
                   color: white;
                 }
+                input {
+                  background-color: inherit;
+                }
                 </style>
                 <?php                   
                   if($tipo === 'Administrador') {
@@ -78,13 +80,12 @@
                 <h6>STOCK: <input class="button-stock" type="text" name="stock" readonly="readonly" value= "<?php echo $row['stock'] ?>"/></h6>
                 <input class="button-stock" hidden readonly="readonly" type="text" name="id" value="<?php echo $row['id'] ?>">                    
                   
-                      <input class="button-stock" type="submit" name="agregarStock" value="+1">
-                      <input class="button-stock" type="submit" name="removeStock" value="-">  
+                      <input class="button-stock" type="submit"  name="agregarStock" value="+">
+                      <input class="button-stock" type="submit"  name="removeStock" value="-">  
                     <?php 
                   }  
                   ?>               
-            </form>
-                        
+            </form>          
           <?php include("stock.php");
          }
          

@@ -35,13 +35,13 @@
     <nav class="barranav">
     
 			<div class="contenedorbtnnav">
-      <a href="index.php"><img src="claxon2.png"    width="250px"
+      <a href="index.php"><img src="claxon2.png"  width="250px"
      height="200px"></a>				
       <?php
 					if ( isset( $_SESSION['user_id'] ))
 						if ($tipo == 'Administrador'){
-          echo "<a href='editcata.php'>EDITAR CATALOGO</a>";
-					echo "<a href='home.php'>ADMINISTRADOR</a>";
+          echo "<a href='editcata.php' style='color:white'>EDITAR CATALOGO</a>";
+					echo "<a href='home.php' style='color:white'>ADMINISTRADOR</a>";
 					}	
 				?>
 			</div>
@@ -69,7 +69,7 @@
         $resultado = $conexion->query($query);
         while ($row = $resultado -> fetch_assoc()) {  
             ?>
-            <a href="detalles.php?id=<?php echo $row["id"]?>">
+            <a>
             <form class="articulo" method="post">
                 <img src="data:image/jpg;base64, <?php echo base64_encode($row['imagen']); ?>">
                 <h4 class="card-title"><?php echo $row['nombre']; ?></h4>

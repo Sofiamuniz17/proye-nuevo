@@ -37,12 +37,10 @@ body {
 float: left;
 }
 .articulo:hover{
-
-  box-shadow: 35px 35px 35px #fff958;
-
+	transform: scale(1.2)
 }
 .button-stock{
-  background-color:rgb(35, 50, 160); ;
+  background-color:dimgrey; ;
 }
 
 .articulo img{
@@ -82,7 +80,7 @@ color: white;
   
 
 .button-stock {
-	background-color: rgb(40, 50, 122);
+   background-color:dimgrey; ;
     border: none;
     color: white;
 }

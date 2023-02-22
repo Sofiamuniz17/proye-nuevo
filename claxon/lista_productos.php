@@ -1,5 +1,3 @@
-
-
 <?php
   session_start();
 
@@ -18,9 +16,21 @@
     }
   }
 
-  $q= $conn->prepare("SELECT COUNT(id) FROM users WHERE Tipo = ('Administrador')");
+  $q= $conn->prepare("SELECT COUNT(id) FROM partes");
   $q->execute();
-  $admin = $q->fetchColumn();
+  $productos = $q->fetchColumn();
+
+  $q= $conn->prepare("SELECT COUNT(id) FROM pedidos");
+  $q->execute();
+  $pedidos = $q->fetchColumn();
+  
+  $q= $conn->prepare("SELECT COUNT(id) FROM consultas");
+  $q->execute();
+  $consultas = $q->fetchColumn();
+
+  $q= $conn->prepare("SELECT COUNT(id) FROM turnos");
+  $q->execute();
+  $turnos = $q->fetchColumn();
 
   $q= $conn->prepare("SELECT COUNT(id) FROM users WHERE Tipo = ('Cliente')");
   $q->execute();
@@ -33,21 +43,25 @@
 ?>
 
 <head>
-	<title>Inicio</title>
+	<title>Productos</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/lista.css">
 </head>
 <body>
 	<!-- SideBar -->
 	<section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
 		<div class="full-box dashboard-sideBar-ct">
+			<!--SideBar Title -->
 		
+			<a href="index.php"><img src="claxon2.png" width="250px" height="200px"></a>
+
+			
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-				<img src="claxon2.png" alt="UserIcon">
+					
 					<figcaption class="text-center text-titles"><?= $user['email']; ?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
@@ -93,31 +107,26 @@
 					
 					</ul>
 				</li>
-
+			
 				
 			</ul>
 		</div>
 	</section>
 
-	<!-- Content page-->
+      
+		<!-- Content page-->
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
-		
-		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles">Consultas</h1>
+			  <h1 class="text-titles">Productos</h1>
+			  <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='nuevoprod.php';"><b>NUEVO</b></button></div>
 			</div>
 		</div>
-		<?php
-	include("conexion.php");
-     $query = "SELECT id, nombre, telefono, correo, consulta, fecha_solicitud FROM consultas";
-        $resultado = $conexion->query($query);
-            ?>
-            <form class="articulo" class="post" method="post">
-				<br><br/>
-	<style>
-		table {
+		<!-- Content page -->
+
+		<style>
+	table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
   		width: 100%;
@@ -129,46 +138,41 @@
   		padding: 8px;
 		}
 
-	tr:nth-child(even) {
+	tr:nth-child(even), tr:nth-child(even) a{
   		background-color: #dddddd;
+		color: black;
 		}
-				
- </style>
 
-<table>
+</style>
+
+
+
+<table class="tabla">
   <tr>
-    <th>Nombre y Apellido</th>
-    <th>Telefono</th>
-    <th>Correo</th>
-	<th>Consulta</th>
-	<th>Fecha Y Solicitud</th>
-	<th></th>c
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>IMAGEN</th>
+	<th>Modificar</th>
   </tr>
   
   <?php 
-     while ($row = $resultado -> fetch_assoc()) {  
+   include("conexion.php");
+   $query = "SELECT imagen, nombre, id FROM partes WHERE activo ='1'";
+   $resultado = $conexion->query($query);
+    while ($row = $resultado -> fetch_assoc()) {  
   ?>
   <tr>
-    <td><?php echo $row['nombre'] ?></td>
-    <td><?php echo $row['telefono'] ?></td>
-    <td><?php echo $row['correo'] ?></td>
-	<td><?php echo $row['consulta'] ?></td>
-	<td><?php echo $row['fecha_solicitud'] ?></td>
-	<td style="display:flex; justify-content:center" ><a href="actualizarConsultas.php?id=<?php echo $row["id"]?>"  style="color:black; ">Modificar</a>
+  	<td class="fila"><?php echo $row['id']; ?></td>
+    <td class="fila"><?php echo $row['nombre']; ?></td>
+    <td class="fila"><img src="data:image/png;base64, <?php echo base64_encode($row['imagen']); ?>"></td>
+    <td class="fila"> <a href="actualizar.php?id=<?php echo $row["id"]?>">Modificar</a></td>
   </tr>
+
   <?php 
 }
 ?>
-	</table>
-</form>
-        
+</table>
 	</section>
-
-	
-				      
-	
-	
-	<!--====== Scripts -->
 	<script src="./js/jquery-3.1.1.min.js"></script>
 	<script src="./js/sweetalert2.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>

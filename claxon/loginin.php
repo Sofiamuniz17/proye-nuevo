@@ -6,7 +6,6 @@
     header('Location: login.php');
   }
   require 'database.php';
-
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $records = $conn->prepare('SELECT id, email, password FROM users WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
@@ -46,8 +45,9 @@
 
     <!--<h1>Login</h1>
     <span>or <a href="signup.php">SignUp</a></span> -->
-    <img src="claxon2.png"    width="250px"
-     height="200px"></a>
+    <img src="claxon2.png"  width="250px"
+    height="200px"></a>
+
     <form class="form-register" action="loginin.php" method="POST">
       <h4>Inicio de sesion</h4>
       <?php if(!empty($message)): ?>
@@ -57,6 +57,6 @@
       <input class="controls" name="password" type="password" placeholder="Ingrese su contraseña">
       <button class="btnn" type="submit" value="Submit">Ingresar</button>
       <p><a href="signup.php">No tengo cuenta</a></p>
-      
     </form>
+
   </body>
