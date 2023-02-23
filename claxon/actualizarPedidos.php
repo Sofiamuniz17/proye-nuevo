@@ -76,7 +76,7 @@ $id = $_GET['id'];
             <span></span>
             <span></span>
             <span></span>
-            <button  class="btnn"  type="submit" name = "borrar" >Eliminar</button>
+            <button  class="btnn"  type="submit" name = "borrar" >Confirmar</button>
            </a>  
   </div>      
                 <?php

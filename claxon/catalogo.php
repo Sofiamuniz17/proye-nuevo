@@ -35,6 +35,7 @@
     <nav class="barranav">
     
 			<div class="contenedorbtnnav">
+        
       <a href="index.php"><img src="claxon2.png"  width="250px"
      height="200px"></a>				
       <?php
@@ -51,6 +52,7 @@
         <main class="contenido">
 		
 			<div class="cata">
+        
 			<div class="categorias">
   				<div class="categorias-content">
 				  	<a href="catalogo.php">Categorias</a>
@@ -79,6 +81,29 @@
           <?php 
          }
         ?>
+          
+          <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='pedidos.php';"><b>HAGA SU PEDIDO</b></button></div>
+          <button class="btnns" type="button" name = "nuevo"  onclick="window.location.href='consultas.php';"><b>HAGA SU CONSULTA</b></button></div>
+          <style>
+
+		.btnn{
+	background-color: yellow;
+	color:black;
+	width: 250px;
+	height: 80px;
+	border-radius: 15px;
+  margin-top: 350px;
+  margin-left:600px;
+ 
+}
+.btnns{
+	background-color: yellow;
+	color:black;
+	width: 250px;
+	height: 80px;
+	border-radius: 15px;
+  margin-left:870px;
+</style>
 		</div>    
       </main>
 </body>

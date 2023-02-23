@@ -153,7 +153,7 @@
     <td><?php echo $row['correo'] ?></td>
 	<td><?php echo $row['pedido'] ?></td>
 	<td><?php echo $row['cantidad'] ?></td>
-	<td style="display:flex; justify-content:center" ><a href="actualizarPedidos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Modificar</a>
+	<td style="display:flex; justify-content:center" ><a href="actualizarPedidos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Eliminar</a>
   </tr>
   <?php 
 }

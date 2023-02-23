@@ -107,6 +107,7 @@
 		<div class="container-fluid">
 			<div class="page-header">
 			  <h1 class="text-titles">Turnos</h1>
+			  <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='turnos.php';"><b>NUEVO</b></button></div>
 			</div>
 		</div>
 		<?php
@@ -133,6 +134,13 @@
 	tr:nth-child(even) {
   		background-color: #dddddd;
 		}
+		.btnn{
+	background-color: yellow;
+	color:black;
+	width: 150px;
+	height: 40px;
+	border-radius: 15px;
+}
 </style>
 
 

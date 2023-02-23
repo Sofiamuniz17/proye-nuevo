@@ -615,3 +615,10 @@ body, html{
 		padding-left: 0;
 	}
 }
+.btnn{
+	background-color: yellow;
+	color:black;
+	width: 150px;
+	height: 40px;
+	border-radius: 15px;
+}
