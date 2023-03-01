@@ -125,10 +125,13 @@ body {
 
 .barranav {
   position: relative;
-  left: 10%;
+  left: 30%;
   height: 100%;
-  width: 1200px;
+  width: 800px;
   border-radius: 20px;
+  background-color: #151515;
+  color:white;
+  margin-top: -150px;
 }
 
 .contenedorbtnnav {
@@ -141,21 +144,24 @@ body {
   border-radius: 30px;
 }
 
+
 .titulo {
   color: #fff958;
 }
 .contenedorbtnnav a {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   display: inline-block;
   padding: 3vh;
   width: 100%;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   transition: 0.3s ease-out all;
+  border-radius: 30px;
 }
 
 .contenedorbtnnav a:hover {
   color: rgba(255, 255, 0, 0.788);
+  background-color: #151515;
   text-decoration: none;
   border-radius: 15px;
 }

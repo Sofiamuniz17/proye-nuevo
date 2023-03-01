@@ -25,6 +25,7 @@ body{
 	color: white;
 	padding: 20px;
 	display: block;
+	border-radius: 30px;
 }
 
 .menu li{
@@ -34,6 +35,7 @@ body{
 
 .menu li a:hover{
 	color: #dfee5e;
+	background-color: #101010;
 }
 .mapa {
     background-position: 0%;

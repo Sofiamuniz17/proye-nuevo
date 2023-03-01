@@ -29,15 +29,16 @@
 		<title>CLAXON</title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet"/>
 		<link rel="stylesheet" href="css/style.css" />
-	</head>
-	<body>
-	
-		<div class="contenedor">
-			
-			<div class=ima>
-			<img src="cla.PNG" >
-	 		</div>
-			 <div class="sesion">
+		<div class="container">
+		<div class="btn-menu">
+			<label for="btn-menu">☰</label>
+		</div>
+			<div class="logo">
+				<h1>Perfil</h1>
+			</div>
+			<nav class="menu">
+				
+				<a href="#"></a>
 				<?php
 					if ( isset( $_SESSION['user_id'] )) {
 					echo "<a href='logout.php'>CERRAR SESION</a>";
@@ -48,7 +49,17 @@
 					echo "<a href='loginin.php'>INICIAR SESION</a>";
 				?>
 			 
-			</div>
+			</nav>
+		</div>
+	</head>
+	<body>
+	
+		<div class="contenedor">
+			
+			<div class=ima>
+			<img src="cla.PNG" >
+	 		</div>
+		
 			<main class="contenido">
 			<div class="dest">
 			<?php
@@ -69,6 +80,19 @@
         <?php
         }
         ?>
+		<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			<a href="#">Mis datos</a>
+			<a href="#">Mis turnos</a>
+			<a href="#">Mis consultas</a>
+			<a href="#">Mi carrito</a>
+			
+		</nav>
+		<label for="btn-menu">✖️</label>
+	</div>
+</div>
 		<button class="btnn" type="submit" value="Submit"><a href="catalogo.php">Ver Catalogo</a></button>
 		</div>
 								<div class="ubicacion" style = "float: left">

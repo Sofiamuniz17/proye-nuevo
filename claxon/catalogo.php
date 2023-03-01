@@ -31,19 +31,31 @@
 <body>
     <header class="head"> 
   
-    
+    <a href="index.php"><img src="claxon2.png"  width="250px"
+     height="200px"></a>	
     <nav class="barranav">
     
 			<div class="contenedorbtnnav">
-        
-      <a href="index.php"><img src="claxon2.png"  width="250px"
-     height="200px"></a>				
-      <?php
-					if ( isset( $_SESSION['user_id'] ))
+      				
+      
+        <?php
+					if ( isset( $_SESSION['user_id'] )) 
 						if ($tipo == 'Administrador'){
-          echo "<a href='editcata.php' style='color:white'>EDITAR CATALOGO</a>";
-					echo "<a href='home.php' style='color:white'>ADMINISTRADOR</a>";
-					}	
+          echo "<a href='verConsultas.php'>VER CONSULTAS</a>";
+          echo "<a href='verPedidos.php'>VER PEDIDOS</a>";
+					echo "<a href='verTurnos.php'>VER TURNOS</a>";
+					echo "<a href='logout.php'>CERRAR SESION</a>";
+					echo "<a href='home.php'>ADMINISTRADOR</a>";
+					}
+          else
+           {
+            echo "<a href='pedidos.php'>PEDIDOS</a>";
+            echo "<a href='consultas.php'>CONSULTAS</a>";
+            echo "<a href='tunos.php'>TURNOS</a>";
+          }	
+					else 
+					echo "<a href='loginin.php'>INICIAR SESION</a>";
+
 				?>
 			</div>
 		</nav>

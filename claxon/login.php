@@ -18,9 +18,9 @@
     if (count((array)$results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
       if ($tipo == 'Administrador'){
-        header("Location: verTurnos.php");
+        header("Location: home.php");
       }else {
-        header("Location: turnos.php");
+        header("Location: index.php");
       }
   
     } else {
