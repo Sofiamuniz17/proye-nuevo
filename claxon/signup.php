@@ -8,11 +8,13 @@
   $q->execute();
   $tipo = $q->fetchColumn();*/
 
-  if (!empty($_POST['email']) && !empty($_POST['password'])) {
+  if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['Nombre']) && !empty($_POST['Telefono']) ) {
     echo("<script>console.log('PHP: " . $_POST['email'] . "');</script>");
-    $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+    $sql = "INSERT INTO users (Nombre, email, Telefono, password) VALUES (:Nombre, :email, :Telefono, :password)";
     $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':Nombre', $_POST['Nombre']);
     $stmt->bindParam(':email', $_POST['email']);
+    $stmt->bindParam(':Telefono', $_POST['Telefono']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $stmt->bindParam(':password', $password);
     
@@ -45,12 +47,14 @@
 
     <!--<h1>SignUp</h1>
     <span>or <a href="login.php">Login</a></span> -->
-    <img src="claxon2.png"    width="250px"
-     height="200px"></a>
+    <a href="index.php"><img src="claxon2.png"  width="250px"
+   height="200px"></a>	
 
     <form class="form-register" action="signup.php" method="POST">
       <h4>Registro</h4>
+      <input class="controls" name="Nombre" type="text" placeholder="Ingrese su Nombre" required>
       <input class="controls" name="email" type="mail" placeholder="Ingrese su correo"  pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+      <input class="controls" name="Telefono" type="text" placeholder="Ingrese su Telefono" required>
       <input class="controls" name="password" type="password" placeholder="Ingrese su contraseña" minlength=8 maxlength=15 required>
       <input class="controls" name="confirm_password" type="password" placeholder="Confirmar contraseña" minlength=8 maxlength=15 required>
       <button class="btnn" type="submit" value="Submit" required>Registrarse</button>

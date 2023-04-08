@@ -24,34 +24,19 @@
     <title>Catalogo</title>
 </head>
 <body>
-    <header class="head"> <h1 class="title">PRODUCTOS</h1>
-    <nav class="barranav">
-            <div class="contenedorbtnnav">
-				<a href="index.php">INICIO</a>
-				<?php
-					if ( isset( $_SESSION['user_id'] )) {
-					echo "<a href='pedidos.php'>PEDIDOS</a>";
-					}
-					else 
-					echo "<a href='login.php'>PEDIDOS</a>";
-					?>
-				<?php
-					if ( isset( $_SESSION['user_id'] )) {
-					echo "<a href='turnos.php'>TURNOS</a>";
-					}
-					else 
-					echo "<a href='login.php'>TURNOS</a>";
-					?>
-                <a href="consultas.php">CONSULTAS</a>
-				<?php
-					if ( isset( $_SESSION['user_id'] )) {
-					echo "<a href='logout.php'>CERRAR SESION</a>";
-					}
-					else 
-					echo "<a href='login.php'>INICIAR SESION</a>";
-					?>
-			</div>
-		</nav>
+<header class="head"> 
+  
+  <a href="index.php"><img src="claxon2.png"  width="250px"
+   height="200px"></a>	
+  <nav class="barranav">
+  
+		  <div class="contenedorbtnnav" style='justify-content: center'>		
+		<div style='color:#fff958; font-size: 20px; justify-content:center; display:flex'>
+						  <h1>Catalogo</h1>
+			  </div>
+		  </div>
+	  </nav>
+	  </header>
         <main class="contenido">
 		<div class="categorias">
   				<div class="categorias-content">

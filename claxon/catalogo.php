@@ -20,6 +20,11 @@
   $q->bindParam(':id', $_SESSION['user_id']);
   $q->execute();
   $tipo = $q->fetchColumn();  
+
+  // if($tipo !== "Cliente") {
+	// die( "ERROR: invalid permissions to access file." );
+  // }
+  ;  
 ?>
 
 <!DOCTYPE html>
@@ -35,28 +40,10 @@
      height="200px"></a>	
     <nav class="barranav">
     
-			<div class="contenedorbtnnav">
-      				
-      
-        <?php
-					if ( isset( $_SESSION['user_id'] )) 
-						if ($tipo == 'Administrador'){
-          echo "<a href='verConsultas.php'>VER CONSULTAS</a>";
-          echo "<a href='verPedidos.php'>VER PEDIDOS</a>";
-					echo "<a href='verTurnos.php'>VER TURNOS</a>";
-					echo "<a href='logout.php'>CERRAR SESION</a>";
-					echo "<a href='home.php'>ADMINISTRADOR</a>";
-					}
-          else
-           {
-            echo "<a href='pedidos.php'>PEDIDOS</a>";
-            echo "<a href='consultas.php'>CONSULTAS</a>";
-            echo "<a href='tunos.php'>TURNOS</a>";
-          }	
-					else 
-					echo "<a href='loginin.php'>INICIAR SESION</a>";
-
-				?>
+			<div class="contenedorbtnnav" style='justify-content: center'>		
+    	  <div style='color:#fff958; font-size: 20px; justify-content:center; display:flex'>
+							<h1>Catalogo</h1>
+				</div>
 			</div>
 		</nav>
         </header>
@@ -70,7 +57,7 @@
 				  	<a href="catalogo.php">Categorias</a>
   					<a href="catalogo.php">Todo</a>
   					<a href="Alar.php">Alarmas</a>
-					<a href="Stereos.php">Stereos</a>
+					  <a href="Stereos.php">Stereos</a>
   					<a href="Audio.php">Audio</a>
   					<a href="AcCc.php">Alza Cristales y Cierre Centralizados</a>
   					<a href="elec.php">Electricidad</a>
@@ -93,10 +80,7 @@
           <?php 
          }
         ?>
-          
-          <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='pedidos.php';"><b>HAGA SU PEDIDO</b></button></div>
-          <button class="btnns" type="button" name = "nuevo"  onclick="window.location.href='consultas.php';"><b>HAGA SU CONSULTA</b></button></div>
-          <style>
+    <style>
 
 		.btnn{
 	background-color: yellow;

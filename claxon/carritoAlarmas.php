@@ -1,3 +1,4 @@
+
 <?php
   session_start();
   ob_start();   
@@ -43,7 +44,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-        <link rel="stylesheet" type="text/css" href="css/stylecat.css">
+    <link rel="stylesheet" type="text/css" href="css/stylecat.css">
         <link rel="stylesheet" type="text/css" href="css/carrito.css?v=<?php echo time(); ?>">
     
 
@@ -98,7 +99,7 @@
     
 
     <?php
-        $query = "SELECT imagen, nombre, stock, precio, id FROM partes WHERE activo = 1";
+        $query = "SELECT imagen, nombre, stock, precio, id FROM partes WHERE activo = 1 && id_categoria=1";
         $resultado = $conexion->query($query);
         while ($row = $resultado -> fetch_assoc()) {  
         ?>

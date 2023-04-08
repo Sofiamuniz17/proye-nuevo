@@ -14,6 +14,17 @@
     if (count($results) > 0) {
       $user = $results;
     }
+
+	$q= $conn->prepare("SELECT Tipo FROM users WHERE id = :id");
+	$q->bindParam(':id', $_SESSION['user_id']);
+	$q->execute();
+	$tipo = $q->fetchColumn();  
+  
+	if($tipo !== "Administrador") {
+	  die( "ERROR: invalid permissions to access file." );
+	}
+	
+
   }
 
   $q= $conn->prepare("SELECT COUNT(id) FROM partes");
@@ -125,18 +136,20 @@
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">
 		
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Productos
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-mall"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box"><?php echo "$productos" ?></p>
-					<small>Registrados</small>
-				</div>
-			</article>
+		<a href="lista_productos.php">
+    		<article class="full-box tile">
+        		<div class="full-box tile-title text-center text-titles text-uppercase">
+            		Productos
+        		</div>
+        		<div class="full-box tile-icon text-center">
+            		<i class="zmdi zmdi-mall"></i>
+        		</div>
+        		<div class="full-box tile-number text-titles">
+            		<p class="full-box"><?php echo "$productos" ?></p>
+            		<small>Registrados</small>
+        		</div>
+    		</article>
+		</a>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Cliente
@@ -149,54 +162,48 @@
 					<small>Registrados</small>
 				</div>
 			</article>
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Auto
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-car"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box"><?php echo "$auto"?></p>
-					<small>Registrados</small>
-				</div>
-			</article>
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Consultas
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-assignment"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box"><?php echo "$consultas"?></p>
-					<small>Registrados</small>
-				</div>
-			</article>
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Turnos
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-calendar"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box"><?php echo "$turnos"?></p>
-					<small>Registrados</small>
-				</div>
-			</article>
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Pedidos
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-shopping-cart"></i><i class="bi bi-bag-check-fill"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box"><?php echo "$pedidos"?></p>
-					<small>Registrados</small>
-				</div>
-			</article>
+			<a href="verConsultas.php">
+    			<article class="full-box tile">
+        			<div class="full-box tile-title text-center text-titles text-uppercase">
+            			Consultas
+        			</div>
+       			 <div class="full-box tile-icon text-center">
+            	<i class="zmdi zmdi-assignment"></i>
+        		</div>
+        		<div class="full-box tile-number text-titles">
+            		<p class="full-box"><?php echo "$consultas"?></p>
+            		<small>Registrados</small>
+        		</div>
+    		</article>
+		</a>
+		<a href="verTurnos.php">
+    		<article class="full-box tile">
+        		<div class="full-box tile-title text-center text-titles text-uppercase">
+            		Turnos
+        		</div>
+        	<div class="full-box tile-icon text-center">
+            	<i class="zmdi zmdi-calendar"></i>
+        	</div>
+        	<div class="full-box tile-number text-titles">
+            	<p class="full-box"><?php echo "$turnos"?></p>
+            	<small>Registrados</small>
+        		</div>
+    		</article>
+		</a>
+		<a href="verPedidos.php">
+    		<article class="full-box tile">
+        		<div class="full-box tile-title text-center text-titles text-uppercase">
+            		Pedidos
+        		</div>
+        		<div class="full-box tile-icon text-center">
+            		<i class="zmdi zmdi-shopping-cart"></i><i class="bi bi-bag-check-fill"></i>
+        		</div>
+        		<div class="full-box tile-number text-titles">
+            		<p class="full-box"><?php echo "$pedidos"?></p>
+            		<small>Registrados</small>
+        		</div>
+    		</article>
+		</a>
 		</div>
 		
                 

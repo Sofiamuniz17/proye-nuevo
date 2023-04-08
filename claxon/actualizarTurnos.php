@@ -21,17 +21,37 @@
   $q->bindParam(':id', $_SESSION['user_id']);
   $q->execute();
   $tipo = $q->fetchColumn();  
+
+  if($tipo !== "Cliente" && $tipo !== "Administrador") {
+	die( "ERROR: invalid permissions to access file." );
+  }
+   
 ?>
 <?php
 $id = $_GET['id'];
 ?>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/extras.css">
+  <link rel="stylesheet" type="text/css" href="css/extras.css?v=<?php echo time(); ?>">
     <title>Actualizar Turnos</title>
 </head>
 <body>
-    <header class="head"> 
-    <div allign="center"><a class="titulo" href="lista_productos.php"><img src="claxon2.png" width="150px" height="150px"></a>
+    <header class="head">
+       
+  <?php
+    if($tipo === "Administrador") {
+  ?>
+      <div allign="center"><a class="titulo" href="verTurnos.php" ><img src="claxon2.png" width="150px" height="150px"></a>
+  <?php
+     }
+  ?>
+
+<?php
+    if($tipo === "Cliente") {
+  ?>
+      <div allign="center"><a class="titulo" href="turnosCliente.php" ><img src="claxon2.png" width="150px" height="150px"></a>
+  <?php
+     }
+  ?>
        
 			<div class="cata">
     <?php
@@ -39,24 +59,24 @@ $id = $_GET['id'];
         $query = "SELECT * FROM turnos WHERE id = $id";
         $resultado = $conexion->query($query);
         while ($row = $resultado -> fetch_assoc()) {
-            ?>
+    ?>
 
 
 <div class="login-box">
   <h2>Turno</h2>
       <form  id="form" type="submit" method="post">
             <div class="user-box">                
-              <input required="" type="text" class="in" name ="Nombre" value = "<?php echo $row['Nombre']; ?>"></input>
+              <input readonly={<?php $tipo === 'Cliente' ?>} required="" type="text" class="in" name ="Nombre" value = "<?php echo $row['Nombre']; ?>"></input>
               <label>Nombre</label>                    
             </div>
 
             <div class="user-box">
-                <input class="in" required="" type="text" name ="Telefono" value = "<?php echo $row['Telefono']; ?>"></input>
+                <input readonly={<?php $tipo === 'Cliente' ?>} class="in" required="" type="text" name ="Telefono" value = "<?php echo $row['Telefono']; ?>"></input>
                 <label>Telefono</label>       
             </div>
 
             <div class="user-box">
-              <input class="in" required="" type="text" name ="Correo" value = "<?php echo $row['Correo']; ?>"></input>
+              <input readonly={<?php $tipo === 'Cliente' ?>} class="in" required="" type="text" name ="Correo" value = "<?php echo $row['Correo']; ?>"></input>
               <label>Correo</label>            
             </div>
 
@@ -80,28 +100,32 @@ $id = $_GET['id'];
               <label>Fecha de solicitud</label>                   
             </div>
 
-            <a >
+          <?php 
+             if($tipo === 'Administrador') {
+          ?>
+              <a >
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <button name = "actualice" type="submit" class="btnn">Cambiar</button>
+             </a>
+             <?php 
+             }
+            ?>
+         
+          <a style="<?php echo $tipo === 'Cliente' ? 'display:flex; justify-content:center' : '' ?>">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            <button name = "actualice" type="submit" class="btnn">Cambiar</button>
-           </a>
-
-           <a>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <button  class="btnn"  type="submit" name = "borrar" >Eliminar</button>
+            <button   class="btnn"  type="submit" name = "borrar" >Eliminar</button>
            </a>  
   </div>      
                 <?php
               }
             if(isset($_POST['actualice']))
               {
-              if(strlen($_POST['Nombre']) >= 1 )
-                {
                 $Nombre = trim($_POST['Nombre']);
                 $Telefono = trim($_POST['Telefono']);
                 $Correo = trim($_POST['Correo']);
@@ -122,19 +146,22 @@ $id = $_GET['id'];
                   <h3 class="actno">Ha habido un error en la solicitud</h3>            
                   <?php
                   } 
-                }
+                
               }
               if(isset($_POST['borrar']))
                 {
                 $consulta ="DELETE FROM turnos WHERE id = '".$id."'";
                 $resultado = mysqli_query($conex, $consulta);
                 if($resultado) 
-                  { ?>
-                     <h3 class="actsi">Borrado Correctamente</h3>                 
+                  { ?>              
                   <?php
-                         $referer = $_SERVER['HTTP_REFERER'];
-                         header("Location: verTurnos.php");
-                         
+                        if($tipo === "Cliente") {
+                          $referer = $_SERVER['HTTP_REFERER'];
+                          header("Location: turnosCliente.php");   
+                         }else {
+                          $referer = $_SERVER['HTTP_REFERER'];
+                          header("Location: verTurnos.php");   
+                         }                                     
                   } 
                 else 
                   { ?>

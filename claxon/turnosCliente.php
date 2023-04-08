@@ -17,6 +17,15 @@
     }
   }
 
+  $q= $conn->prepare("SELECT Tipo FROM users WHERE id = :id");
+  $q->bindParam(':id', $_SESSION['user_id']);
+  $q->execute();
+  $tipo = $q->fetchColumn();  
+
+  if($tipo !== "Cliente") {
+	die( "ERROR: invalid permissions to access file." );
+  }
+
   $q= $conn->prepare("SELECT COUNT(id) FROM users WHERE Tipo = ('Administrador')");
   $q->execute();
   $admin = $q->fetchColumn();
@@ -30,7 +39,9 @@
   $auto = $q->fetchColumn();
 
 ?>
-
+<?php 
+	$email = $user['email'];
+?>
 <head>
 	<title>Inicio</title>
 	<meta charset="UTF-8">
@@ -47,7 +58,9 @@
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-				<a href="index.php"><img src="claxon2.png" width="250px" height="200px"></a>
+				
+					<a href="index.php"> 	<img href="index.php" src="claxon2.png" alt="UserIcon"> </a>
+			
 					<figcaption class="text-center text-titles"><?= $user['email']; ?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
@@ -66,31 +79,24 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.php">
+					<a href="clienteHome.php">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Datos
 					</a>
 				</li>
 				<li>
 					<a class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Administración <i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Cliente <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-                		<a href="lista_productos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver productos</a>					
+						<a href="pedidosCliente.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Ver Pedidos</a>
 						</li>
 						<li>
-						<a href="editcata.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Editar Catalogo</a>
+						<a href="consultasCliente.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver Consultas</a>
 						</li>
 						<li>
-						<a href="verPedidos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Ver Pedidos</a>
+						<a href="turnosCliente.php"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Ver Turnos</a>
 						</li>
-						<li>
-						<a href="verConsultas.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver Consultas</a>
-						</li>
-						<li>
-						<a href="verTurnos.php"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Ver Turnos</a>
-						</li>
-					
 					</ul>
 				</li>
 
@@ -112,7 +118,7 @@
 		</div>
 		<?php
 	include("conexion.php");
-  $query = "SELECT id, nombre, telefono, correo, fecha_hora, marca_modelo, servicio, fecha_solicitud FROM turnos";
+  $query = "SELECT id, nombre, telefono, correo, fecha_hora, marca_modelo, servicio, fecha_solicitud FROM turnos WHERE correo = '".$email."'";
         $resultado = $conexion->query($query);
             ?>
 <form class="articulo" class="post" method="post">

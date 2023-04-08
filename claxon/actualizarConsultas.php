@@ -21,6 +21,11 @@
   $q->bindParam(':id', $_SESSION['user_id']);
   $q->execute();
   $tipo = $q->fetchColumn();  
+
+  if($tipo !== "Cliente" && $tipo !== "Administrador") {
+	die( "ERROR: invalid permissions to access file." );
+  }
+  
 ?>
 <?php
 $id = $_GET['id'];
@@ -31,7 +36,21 @@ $id = $_GET['id'];
 </head>
 <body>
     <header class="head"> 
-    <div allign="center"><a class="titulo" href="lista_productos.php"><img src="claxon2.png" width="150px" height="150px"></a>
+    <?php
+    if($tipo === "Administrador") {
+  ?>
+      <div allign="center"><a class="titulo" href="verConsultas.php" ><img src="claxon2.png" width="150px" height="150px"></a>
+  <?php
+     }
+  ?>
+
+<?php
+    if($tipo === "Cliente") {
+  ?>
+      <div allign="center"><a class="titulo" href="consultasCliente.php" ><img src="claxon2.png" width="150px" height="150px"></a>
+  <?php
+     }
+  ?>
        
 			<div class="cata">
     <?php
@@ -39,24 +58,25 @@ $id = $_GET['id'];
         $query = "SELECT * FROM consultas WHERE id = $id";
         $resultado = $conexion->query($query);
         while ($row = $resultado -> fetch_assoc()) {
-            ?>
+    ?>
 
 
 <div class="login-box">
   <h2>Consulta</h2>
       <form  id="form" type="submit" method="post">
-            <div class="user-box">                
-              <input required="" type="text" class="in" name ="Nombre" value = "<?php echo $row['Nombre']; ?>"></input>
+      <div class="user-box">                
+              <input disabled={<?php $tipo === 'Cliente' ?>} required="" type="text" class="in" name ="Nombre" value = "<?php echo $row['Nombre']; ?>"></input>
               <label>Nombre</label>                    
             </div>
 
             <div class="user-box">
-                <input class="in" required="" type="text" name ="Telefono" value = "<?php echo $row['Telefono'] ?>"></input>
+                <input disabled={<?php $tipo === 'Cliente' ?>} class="in" required="" type="text" name ="Telefono" value = "<?php echo $row['Telefono']; ?>"></input>
                 <label>Telefono</label>       
             </div>
 
+
             <div class="user-box">
-              <input class="in" required="" type="text" name ="Correo" value = "<?php echo $row['Correo'] ?>"></input>
+              <input disabled={<?php $tipo === 'Cliente' ?>} class="in" required="" type="text" name ="Correo" value = "<?php echo $row['Correo']; ?>"></input>
               <label>Correo</label>            
             </div>
 
@@ -66,17 +86,34 @@ $id = $_GET['id'];
             </div>
 
             <div class="user-box">
-              <input class="in" required="" type="text" name ="Fecha_Solicitud" value = "<?php echo $row['Fecha_Solicitud'] ?>"></input>  
+              <input  disabled={<?php $tipo === 'Cliente' ?>} class="in" required="" type="text" name ="Fecha_Solicitud" value = "<?php echo $row['Fecha_Solicitud'] ?>"></input>  
               <label>Fecha de Solicitud</label>                   
             </div>
 
-            <a href="mailto: <?php echo $row['Correo'] ?>">
+        <?php if($tipo === 'Cliente') {
+          ?>
+           <a>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <button name = "actualice" class="btnn" type="submit" >Cambiar</button>
+           </a>
+        <?php   
+      } ?>
+   
+      <?php if($tipo === 'Administrador') {
+          ?>
+          <a href="mailto: <?php echo $row['Correo'] ?>">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             <button class="btnn" type="button" >Responder</button>
-           </a>
+          </a>
+
+          <?php
+              } ?>
 
            <a>
             <span></span>
@@ -88,6 +125,27 @@ $id = $_GET['id'];
   </div>      
                 <?php
               }
+
+              if(isset($_POST['actualice']))
+              {
+            
+                $consulta = trim($_POST['Consulta']);
+                $consulta ="UPDATE consultas set Consulta = '".$consulta."' WHERE id = '".$id."'";
+                $resultado = mysqli_query($conex, $consulta);
+                if($resultado) 
+                  { ?>
+                  <?php
+                  $referer = $_SERVER['HTTP_REFERER'];
+                  header("Location: $referer");
+                  } 
+                else 
+                  { ?>
+                  <h3 class="actno">Ha habido un error en la solicitud</h3>            
+                  <?php
+                  } 
+                
+              }
+
               if(isset($_POST['borrar']))
                 {
                 $consulta ="DELETE FROM consultas WHERE id = '".$id."'";
@@ -96,8 +154,13 @@ $id = $_GET['id'];
                   { ?>
                      <h3 class="actsi">Borrado Correctamente</h3>                 
                   <?php
-                         $referer = $_SERVER['HTTP_REFERER'];
-                         header("Location: verConsultas.php");
+                               if($tipo === "Cliente") {
+                                $referer = $_SERVER['HTTP_REFERER'];
+                                header("Location: consultasCliente.php");   
+                               }else {
+                                $referer = $_SERVER['HTTP_REFERER'];
+                                header("Location: verConsultas.php");   
+                               }  
                          
                   } 
                 else 

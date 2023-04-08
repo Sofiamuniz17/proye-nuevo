@@ -284,8 +284,16 @@ body {
   transition: 0.5s;
 }
 
+.login-box .user-box input:read-only ~ label,
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #fff958;
+  font-size: 12px;
+}
+
+.login-box .user-box input:disabled ~ label {
   top: -20px;
   left: 0;
   color: #fff958;

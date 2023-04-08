@@ -19,6 +19,10 @@
   $q->bindParam(':id', $_SESSION['user_id']);
   $q->execute();
   $tipo = $q->fetchColumn();  
+
+  if($tipo !== "Administrador") {
+	  die( "ERROR: invalid permissions to access file." );
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">

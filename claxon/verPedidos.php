@@ -16,6 +16,15 @@
       $user = $results;
     }
   }
+  
+  $q= $conn->prepare("SELECT Tipo FROM users WHERE id = :id");
+  $q->bindParam(':id', $_SESSION['user_id']);
+  $q->execute();
+  $tipo = $q->fetchColumn();
+
+  if($tipo !== "Administrador") {
+	die( "ERROR: invalid permissions to access file." );
+}
 
   $q= $conn->prepare("SELECT COUNT(id) FROM users WHERE Tipo = ('Administrador')");
   $q->execute();
@@ -46,7 +55,7 @@
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-				<img src="claxon2.png" alt="UserIcon">
+				<a href="index.php"><img src="claxon2.png" width="250px" height="200px"></a>
 					<figcaption class="text-center text-titles"><?= $user['email']; ?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
@@ -106,6 +115,8 @@
 		<div class="container-fluid">
 			<div class="page-header">
 			  <h1 class="text-titles">Pedidos</h1>
+			  <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='pedidos.php';"><b>NUEVO</b></button></div>
+
 			</div>
 		</div>
 		<?php

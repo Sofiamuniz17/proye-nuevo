@@ -15,11 +15,14 @@
     if (count((array)$results) > 0) {
       $user = $results;
     }
-  }
+  }  
   $q= $conn->prepare("SELECT Tipo FROM users WHERE id = :id");
   $q->bindParam(':id', $_SESSION['user_id']);
   $q->execute();
   $tipo = $q->fetchColumn();  
+
+
+
 ?>
 
 	<head>
@@ -28,22 +31,27 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>CLAXON</title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet"/>
-		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>" />
 		<div class="container">
+
+	<?php
+		if ($tipo == 'Cliente'){
+	?>
 		<div class="btn-menu">
 			<label for="btn-menu">☰</label>
 		</div>
 			<div class="logo">
 				<h1>Perfil</h1>
 			</div>
+	<?php
+		}		
+	?>
 			<nav class="menu">
 				
 				<a href="#"></a>
 				<?php
 					if ( isset( $_SESSION['user_id'] )) {
-					echo "<a href='logout.php'>CERRAR SESION</a>";
-					
-					/*echo "<p>$tipo</p>";*/
+					echo "<a href='logout.php'>CERRAR SESION</a>";					
 					}
 					else 
 					echo "<a href='loginin.php'>INICIAR SESION</a>";
@@ -69,7 +77,7 @@
         $resultado = $conexion->query($query);
         while ($row = $resultado->fetch_assoc()) {
             ?>
-		<a href="detalles.php?id=<?php echo $row["id"]?>">
+		<a>
             <div class="articulo">
 			<img src="data:image/jpg;base64, <?php echo base64_encode($row['imagen']); ?>">
                 <h4 class="card-title"><?php echo $row['nombre']; ?></h4>
@@ -83,18 +91,31 @@
 		<input type="checkbox" id="btn-menu">
 <div class="container-menu">
 	<div class="cont-menu">
+	<h3 style='color: white; display:flex; justify-content:center'>Mi perfil</h3>
 		<nav>
-			<a href="#">Mis datos</a>
-			<a href="#">Mis turnos</a>
-			<a href="#">Mis consultas</a>
-			<a href="#">Mi carrito</a>
-			
+			<hr></hr>
+			<a href='turnosCliente.php'>Mis Turnos</a>
+			<a href="consultasCliente.php">Mis consultas</a>
+			<a href="pedidosCliente.php">Mis pedidos</a>
+			<hr></hr>
+			<a href='turnos.php'>Saca tu Turno</a>
+			<a href="consultas.php">Realiza tu consulta</a>
+			<hr></hr>
+			<a href="carrito.php">Mi carrito</a>
 		</nav>
 		<label for="btn-menu">✖️</label>
 	</div>
 </div>
-		<button class="btnn" type="submit" value="Submit"><a href="catalogo.php">Ver Catalogo</a></button>
-		</div>
+<?php 
+		if ($tipo == 'Cliente'){
+		  echo "<button class='btnn' type='submit' value='Submit'><a href='carrito.php'>Ver Carrito</a></button>";
+		}
+		else if($tipo == 'Administrador') {
+			echo "<button class='btnn' type='submit' value='Submit'><a href='editcata.php'>Editar Catalogo</a></button>";
+		}else {
+			echo "<button class='btnn' type='submit' value='Submit'><a href='catalogo.php'>Ver Catalogo</a></button>";
+		}
+		?>		</div>
 								<div class="ubicacion" style = "float: left">
 						<div class="somos">
 							<h1>¿Quienes somos?</h1>

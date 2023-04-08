@@ -51,8 +51,8 @@
 
     <!--<h1>Login</h1>
     <span>or <a href="signup.php">SignUp</a></span> -->
-    <img src="claxon2.png"    width="250px"
-     height="200px"></a>
+    <a href="index.php"><img src="claxon2.png"  width="250px"
+   height="200px"></a>	
     <form class="form-register" action="login.php" method="POST">
       <h4>Inicio de sesion</h4>
       <?php if(!empty($message)): ?>

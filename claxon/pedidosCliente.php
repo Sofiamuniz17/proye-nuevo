@@ -17,6 +17,16 @@
     }
   }
 
+  $q= $conn->prepare("SELECT Tipo FROM users WHERE id = :id");
+  $q->bindParam(':id', $_SESSION['user_id']);
+  $q->execute();
+  $tipo = $q->fetchColumn();  
+
+  if($tipo !== "Cliente") {
+	die( "ERROR: invalid permissions to access file." );
+  }
+
+
   $q= $conn->prepare("SELECT COUNT(id) FROM users WHERE Tipo = ('Administrador')");
   $q->execute();
   $admin = $q->fetchColumn();
@@ -31,12 +41,15 @@
 
 ?>
 
+<?php 
+	$email = $user['email'];
+?>
+
 <head>
 	<title>Inicio</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="./css/main.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<!-- SideBar -->
@@ -47,7 +60,7 @@
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-				<a href="index.php"><img src="claxon2.png" width="250px" height="200px"></a>
+				<a href="index.php"><img href="index.php" src="claxon2.png" alt="UserIcon"> </a>
 					<figcaption class="text-center text-titles"><?= $user['email']; ?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
@@ -66,31 +79,24 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.php">
+					<a href="clienteHome.php">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Datos
 					</a>
 				</li>
 				<li>
 					<a class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Administración <i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Cliente <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-                		<a href="lista_productos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver productos</a>					
+						<a href="pedidosCliente.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Ver Pedidos</a>
 						</li>
 						<li>
-						<a href="editcata.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Editar Catalogo</a>
+						<a href="consultasCliente.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver Consultas</a>
 						</li>
 						<li>
-						<a href="verPedidos.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Ver Pedidos</a>
+						<a href="turnosCliente.php"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Ver Turnos</a>
 						</li>
-						<li>
-						<a href="verConsultas.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Ver Consultas</a>
-						</li>
-						<li>
-						<a href="verTurnos.php"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Ver Turnos</a>
-						</li>
-					
 					</ul>
 				</li>
 
@@ -106,20 +112,20 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles">Turnos</h1>
-			  <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='turnos.php';"><b>NUEVO</b></button></div>
+			  <h1 class="text-titles">Pedidos</h1>
+			  <button class="btnn" type="button" name = "nuevo"  onclick="window.location.href='carrito.php';"><b>NUEVO</b></button></div>
+
 			</div>
 		</div>
 		<?php
 	include("conexion.php");
-  $query = "SELECT id, nombre, telefono, correo, fecha_hora, marca_modelo, servicio, fecha_solicitud FROM turnos";
+	$query = "SELECT id, nombre, telefono, correo, pedido, cantidad FROM pedidos WHERE correo = '".$email."' ";
         $resultado = $conexion->query($query);
             ?>
-<form class="articulo" class="post" method="post">
-	<br><br/>
-
-<style>
-	table {
+            <form class="articulo" class="post" method="post">
+				<br><br/>
+				<style>
+		table {
   		font-family: arial, sans-serif;
   		border-collapse: collapse;
   		width: 100%;
@@ -134,26 +140,16 @@
 	tr:nth-child(even) {
   		background-color: #dddddd;
 		}
-		.btnn{
-	background-color: yellow;
-	color:black;
-	width: 150px;
-	height: 40px;
-	border-radius: 15px;
-}
-</style>
-
-
+				
+ </style>
 
 <table>
   <tr>
     <th>Nombre y Apellido</th>
     <th>Telefono</th>
     <th>Correo</th>
-	<th>Fecha</th>
-	<th>Marca y Modelo</th>
-	<th>Servicio</th>
-	<th>Fecha Solicitud</th>
+	<th>Pedido</th>
+	<th>Cantidad</th>
 	<th></th>
   </tr>
   
@@ -164,18 +160,20 @@
     <td><?php echo $row['nombre'] ?></td>
     <td><?php echo $row['telefono'] ?></td>
     <td><?php echo $row['correo'] ?></td>
-	<td><?php echo $row['fecha_hora'] ?></td>
-    <td><?php echo $row['marca_modelo'] ?></td>
-    <td><?php echo $row['servicio'] ?></td>
-	<td><?php echo $row['fecha_solicitud'] ?></td>
-	<td style="display:flex; justify-content:center" ><a href="actualizarTurnos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Modificar</a>
+	<td><?php echo $row['pedido'] ?></td>
+	<td><?php echo $row['cantidad'] ?></td>
+	<td style="display:flex; justify-content:center" ><a href="actualizarPedidos.php?id=<?php echo $row["id"]?>"  style="color:black; ">Eliminar</a>
   </tr>
-	<input hidden readonly="readonly" type="text" name="id" value="<?php echo $row['id'] ?>" />
   <?php 
 }
 ?>
-</table>
-</form>
+	</table>
+				<!-- <input class="consul" type="submit" name="solicite" value="Eliminar consulta">     -->
+            </form>
+       
+    <?php
+      include("consul.php");
+      ?>
 	</section>
 
 	<!-- Notifications area -->
